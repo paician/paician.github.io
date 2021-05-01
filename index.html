@@ -729,14 +729,14 @@
             const buttonParent = button.parentElement;
             const buttonClone = button.cloneNode(true);
             buttonParent.replaceChild(buttonClone, button);
-            input.placeholder = '请输入密码';
+            input.placeholder = '請輸入密碼';
             buttonClone.addEventListener('click', event => {
                 const passwd = input.value;
                 if (!input.value) {
                     return;
                 }
                 input.value = '';
-                input.placeholder = '正在验证..';
+                input.placeholder = '正在驗證..';
                 sendRequest(window.api.method,
                     window.api.url,
                     window.api.formatPayload(files.parent, passwd),
@@ -744,7 +744,7 @@
                     data => {
                         const newFiles = JSON.parse(data);
                         if (newFiles.encrypted) {
-                            input.placeholder = '密码错误';
+                            input.placeholder = '密碼錯誤';
                         } else {
                             window.fileCache.set(newFiles.parent, newFiles);
                             fetchFileList(newFiles.parent);
@@ -939,7 +939,7 @@
                             div.style.background = 'rgba(218, 215, 215, 0.21)';
                             div.style.webkitTapHighlightColor = 'rgba(0, 0, 0, 0)';
                             div.style.cursor = 'pointer';
-                            div.innerHTML = '新窗口打开';
+                            div.innerHTML = '新視窗開啟';
                             div.addEventListener('click', () => window.open(officeOnline));
                             content.innerHTML = '';
                             content.appendChild(div);
@@ -954,7 +954,7 @@
                             break;
                         default:
                             content.style['text-align'] = 'center';
-                            content.innerHTML = '该文件不支持预览';
+                            content.innerHTML = '該檔案不支援預覽';
                             break;
 
                     }
@@ -966,7 +966,7 @@
                         event => {
                             previewHandler.copyTextContent(null, window.api.url + '?file=' + path);
                             const btn = document.querySelector('.btn.quote');
-                            btn.innerHTML = '已复制';
+                            btn.innerHTML = '已複製';
                             setTimeout(() => btn.innerHTML = '引用', 250);
                         }
                     );
@@ -985,7 +985,7 @@
                                 window.location.pathname +
                                 '?path=' + sharePath());
                             const btn = document.querySelector('.btn.share');
-                            btn.innerHTML = '已复制';
+                            btn.innerHTML = '已複製';
                             setTimeout(() => btn.innerHTML = '分享', 250);
                         }
                     );
@@ -1317,7 +1317,7 @@
                 <div class="preview">
                     <div class="info">
                         <div class="file-name"></div>
-                        <div class="btn download">下载</div>
+                        <div class="btn download">下載</div>
                         <div class="btn quote">引用</div>
                         <div class="btn share">分享</div>
                     </div>
