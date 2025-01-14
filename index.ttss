@@ -1,0 +1,195 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.widget-panel {
+  width: 30%;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+.panel-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.control-group {
+  margin-bottom: 15px;
+}
+
+.group-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.widget {
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer; /* 添加鼠标指针样式 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widget:active {
+  transform: scale(0.95);
+}
+
+.widget:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.widget-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.design-area {
+  flex: 1;
+  padding: 15px;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 1px solid #ddd;
+}
+
+.drop-zone {
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  text-align: center;
+  color: #888;
+}
+
+.form-item-wrapper {
+  position: relative;
+}
+
+.insert-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #1890ff;
+  z-index: 100; /* 提高层级 */
+  opacity: 1; /* 确保底线可见 */
+  pointer-events: none; /* 防止底线阻挡交互 */
+  transition: opacity 0.2s; /* 添加过渡效果 */
+}
+
+.form-item-wrapper:hover .insert-indicator,
+.form-item-wrapper[data-dragging="true"] .insert-indicator {
+  opacity: 1;
+  visibility: visible;
+}
+
+.form-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+  cursor: grab;
+}
+
+.form-item[data-dragging="true"] {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.drag-handle {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+  cursor: move;
+}
+
+.grab-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.form-item-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-item-label {
+  font-weight: bold;
+}
+
+.required-mark {
+  color: red;
+  margin-left: 4px;
+}
+
+.form-item-placeholder {
+  color: #999;
+  font-size: 12px;
+  text-align: right;
+}
+
+.multi-line-placeholder {
+  color: #999;
+  font-size: 12px;
+  white-space: pre-line;
+  text-align: left;
+}
+
+.remove-item {
+  position: absolute;
+  right: 10px;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.remove-item:active {
+  color: #ff7875;
+}
+
+.form-item[data-type="textarea"] .form-item-content {
+  min-height: 100px;
+}
+
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s;
+}
+
+.custom-cursor-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+}
