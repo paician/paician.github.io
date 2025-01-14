@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>表单控件管理</title>
+    <link rel="stylesheet" href="index.css">
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="widget-panel">
+            <text class="panel-title">控件</text>
+            <div class="control-group">
+                <text class="group-title">文本</text>
+                <div 
+                    class="widget" 
+                    data-type="single-line-text"
+                    onclick="onWidgetTap(event)"
+                >
+                    单行文本
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="multi-line-text"
+                    onclick="onWidgetTap(event)"
+                >
+                    多行文本
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="description"
+                    onclick="onWidgetTap(event)"
+                >
+                    说明
+                </div>
+            </div>
+            <div class="control-group">
+                <text class="group-title">数值</text>
+                <div 
+                    class="widget" 
+                    data-type="number"
+                    onclick="onWidgetTap(event)"
+                >
+                    数字
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="currency"
+                    onclick="onWidgetTap(event)"
+                >
+                    金额
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="formula"
+                    onclick="onWidgetTap(event)"
+                >
+                    计算公式
+                </div>
+            </div>
+        </div>
+        <div class="form-panel" id="formPanel">
+            <!-- Dynamically added form items will go here -->
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

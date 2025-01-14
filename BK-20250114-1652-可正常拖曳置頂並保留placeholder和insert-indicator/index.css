@@ -1,0 +1,190 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+.widget-panel {
+    width: 30%;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.group-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.widget {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.widget:active {
+    transform: scale(0.95);
+}
+
+.widget:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-panel {
+    position: relative;
+    flex-grow: 1;
+    padding-top: 50px;
+    padding: 15px 5;
+    overflow-y: auto;
+
+}
+
+.form-panel::before {
+    content: '拖曳區域';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 14px;
+    color: #888;
+}
+
+
+.form-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    cursor: grab;
+    position: relative;
+    user-select: none;
+}
+
+.form-item.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+.form-item.drag-over {
+    border: 2px dashed #007bff;
+}
+
+.form-item.placeholder {
+    background-color: #f0f0f0;
+    border: 2px dashed #999;
+    visibility: visible;
+}
+
+/* New drop zone styling */
+.drop-zone {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px; /* Larger drop zone */
+    z-index: 10;
+}
+
+.drop-zone.top {
+    top: 0;
+}
+
+.drop-zone.bottom {
+    bottom: 0;
+}
+
+.drag-space {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: transparent;
+    z-index: 10;
+}
+
+
+.form-item.dragging-active {
+    opacity: 0.7;
+
+}
+
+
+.form-item.dragging-chosen {
+    cursor: move;
+}
+
+.insert-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #007bff;
+    z-index: 10;
+}
+
+.insert-indicator:first-child {
+    top: 0;
+}
+
+.insert-indicator:last-child {
+    bottom: 0;
+}
+
+
+.drag-preview {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.7;
+    transform: rotate(3deg);
+}
+
+.insert-indicator.top {
+    top: -1px;
+}
+
+.insert-indicator.bottom {
+    bottom: -1px;
+}
+
+.insert-indicator.active {
+    display: block;
+}
+
+.form-item-remove {
+    color: red;
+    cursor: pointer;
+}
