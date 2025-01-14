@@ -1,119 +1,57 @@
-<view class="app-container">
-    <view class="widget-panel">
-        <text class="panel-title">控件</text>
-        <view class="control-group">
-            <text class="group-title">文本</text>
-            <view 
-                class="widget" 
-                data-type="single-line-text"
-                bind:tap="onWidgetTap"
-            >
-                单行文本
-            </view>
-            <view 
-                class="widget" 
-                data-type="multi-line-text"
-                bind:tap="onWidgetTap"
-            >
-                多行文本
-            </view>
-            <view 
-                class="widget" 
-                data-type="description"
-                bind:tap="onWidgetTap"
-            >
-                说明
-            </view>
-        </view>
-        <view class="control-group">
-            <text class="group-title">数值</text>
-            <view 
-                class="widget" 
-                data-type="number"
-                bind:tap="onWidgetTap"
-            >
-                数字
-            </view>
-            <view 
-                class="widget" 
-                data-type="currency"
-                bind:tap="onWidgetTap"
-            >
-                金额
-            </view>
-            <view 
-                class="widget" 
-                data-type="formula"
-                bind:tap="onWidgetTap"
-            >
-                计算公式
-            </view>
-        </view>
-    </view>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單設計器</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 左側控件面板 -->
+        <div class="widget-panel">
+            <h3>控件</h3>
+            <div class="control-group">
+                <h4>文本</h4>
+                <div class="widget" data-type="single-line-text" onclick="onWidgetTap(event)">單行文本</div>
+                <div class="widget" data-type="multi-line-text" onclick="onWidgetTap(event)">多行文本</div>
+                <div class="widget" data-type="description" onclick="onWidgetTap(event)">說明</div>
+            </div>
+            <div class="control-group">
+                <h4>數值</h4>
+                <div class="widget" data-type="number" onclick="onWidgetTap(event)">數字</div>
+                <div class="widget" data-type="currency" onclick="onWidgetTap(event)">金額</div>
+                <div class="widget" data-type="formula" onclick="onWidgetTap(event)">計算公式</div>
+            </div>
+        </div>
 
-    <view class="design-area">
-        <text class="area-title">测试审批2</text>
-        <view class="drop-zone">点击左侧控件自动新增</view>
-        
-        <!-- 动态渲染的输入项 -->
-        <block wx:for="{{formItems}}" wx:key="unique">
-          <view 
-          class="form-item-wrapper"
-          data-index="{{index}}"
-          data-dragging="{{item.isDragging}}" // 添加这个属性
-      >
-      <view 
-        class="insert-indicator" 
-        wx:if="{{draggedItemIndex === index || item.isDragging}}" // 修改条件
-    ></view>
-                <view 
-                    class="form-item" 
-                    data-index="{{index}}"
-                    data-type="{{item.type}}"
-                    bind:longpress="onLongPress"
-                    bind:touchstart="onTouchStart"
-                    bind:touchmove="onTouchMove"
-                    bind:touchend="onTouchEnd"
-                >
-                    <!-- 拖拽手柄 -->
-                    <view 
-                        wx:if="{{item.isDragging}}" 
-                        class="drag-handle"
-                    >
-                        <image 
-                            src="grab-icon.svg" 
-                            class="grab-icon"
-                        ></image>
-                    </view>
+        <!-- 右側設計區域 -->
+        <div class="design-area" id="design-area">
+            <h3>測試審批2</h3>
+            <div class="drop-zone">點擊左側控件自動新增</div>
+            
+            <!-- 新增右側輸入面板 -->
+            <div id="input-panel" class="input-panel" style="display:none;">
+                <div class="input-container">
+                    <div class="input-header">
+                        <label id="input-label" class="input-label">單行文本*</label>
+                        <div class="input-controls">
+                            <button id="move-up" class="move-button" onclick="moveInputPanelUp()">▲</button>
+                            <button id="move-down" class="move-button" onclick="moveInputPanelDown()">▼</button>
+                        </div>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="input-field" 
+                        class="input-field" 
+                        placeholder="請輸入" 
+                        oninput="onInputChange(event)"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <view class="form-item-content">
-                        <text class="form-item-label">
-                            {{item.label}}
-                            <text class="required-mark">*</text>
-                        </text>
-                        
-                        <!-- 多行文本特殊处理 -->
-                        <block wx:if="{{item.type === 'textarea'}}">
-                            <view class="multi-line-placeholder">
-                                <text>\n\n请输入</text>
-                            </view>
-                        </block>
-                        <block wx:else>
-                            <text class="form-item-placeholder">请输入</text>
-                        </block>
-                    </view>
-                    <view 
-                        class="remove-item" 
-                        bind:tap="removeFormItem"
-                        data-index="{{index}}"
-                    >
-                        <image 
-                            src="delete-icon.svg" 
-                            class="delete-icon"
-                        ></image>
-                    </view>
-                </view>
-            </view>
-        </block>
-    </view>
-</view>
+    <script src="index.js"></script>
+</body>
+</html>
