@@ -1,57 +1,67 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>表單設計器</title>
-    <link rel="stylesheet" href="index.css">
+    <title>表单控件管理</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <!-- 左側控件面板 -->
+    <div class="app-container">
         <div class="widget-panel">
-            <h3>控件</h3>
+            <text class="panel-title">控件</text>
             <div class="control-group">
-                <h4>文本</h4>
-                <div class="widget" data-type="single-line-text" onclick="onWidgetTap(event)">單行文本</div>
-                <div class="widget" data-type="multi-line-text" onclick="onWidgetTap(event)">多行文本</div>
-                <div class="widget" data-type="description" onclick="onWidgetTap(event)">說明</div>
+                <text class="group-title">文本</text>
+                <div 
+                    class="widget" 
+                    data-type="single-line-text"
+                    onclick="onWidgetTap(event)"
+                >
+                    单行文本
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="multi-line-text"
+                    onclick="onWidgetTap(event)"
+                >
+                    多行文本
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="description"
+                    onclick="onWidgetTap(event)"
+                >
+                    说明
+                </div>
             </div>
             <div class="control-group">
-                <h4>數值</h4>
-                <div class="widget" data-type="number" onclick="onWidgetTap(event)">數字</div>
-                <div class="widget" data-type="currency" onclick="onWidgetTap(event)">金額</div>
-                <div class="widget" data-type="formula" onclick="onWidgetTap(event)">計算公式</div>
-            </div>
-        </div>
-
-        <!-- 右側設計區域 -->
-        <div class="design-area" id="design-area">
-            <h3>測試審批2</h3>
-            <div class="drop-zone">點擊左側控件自動新增</div>
-            
-            <!-- 新增右側輸入面板 -->
-            <div id="input-panel" class="input-panel" style="display:none;">
-                <div class="input-container">
-                    <div class="input-header">
-                        <label id="input-label" class="input-label">單行文本*</label>
-                        <div class="input-controls">
-                            <button id="move-up" class="move-button" onclick="moveInputPanelUp()">▲</button>
-                            <button id="move-down" class="move-button" onclick="moveInputPanelDown()">▼</button>
-                        </div>
-                    </div>
-                    <input 
-                        type="text" 
-                        id="input-field" 
-                        class="input-field" 
-                        placeholder="請輸入" 
-                        oninput="onInputChange(event)"
-                    />
+                <text class="group-title">数值</text>
+                <div 
+                    class="widget" 
+                    data-type="number"
+                    onclick="onWidgetTap(event)"
+                >
+                    数字
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="currency"
+                    onclick="onWidgetTap(event)"
+                >
+                    金额
+                </div>
+                <div 
+                    class="widget" 
+                    data-type="formula"
+                    onclick="onWidgetTap(event)"
+                >
+                    计算公式
                 </div>
             </div>
         </div>
+        <div class="form-panel" id="formPanel">
+            <!-- Dynamically added form items will go here -->
+        </div>
     </div>
-
-    <script src="index.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
