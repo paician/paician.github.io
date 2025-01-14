@@ -1,66 +1,58 @@
-// scripts.js
+let formItems = [];
 
-// 初始化變數
-const widgetPanel = document.querySelector('.widget-panel');
-const sortable = document.getElementById('sortable');
-
-// 啟用 jQuery UI 的排序功能
-$(function () {
-    $("#sortable").sortable();
-    $("#sortable").disableSelection();
-});
-
-// 監聽左側控件點擊事件
-widgetPanel.addEventListener('click', (e) => {
-    if (e.target.classList.contains('widget')) {
-        const widgetType = e.target.dataset.type;
-        addWidgetToSortable(widgetType);
-    }
-});
-
-// 動態添加控件到右側設計區
-function addWidgetToSortable(widgetType) {
-    const formItem = document.createElement('div');
-    formItem.className = 'form-item';
-    formItem.innerHTML = `
-        <label>${getWidgetLabel(widgetType)}*</label>
-        <input type="text" placeholder="請輸入" disabled />
-        <div class="controls">
-            <button class="move-up">↑</button>
-            <button class="move-down">↓</button>
-            <button class="delete">✖</button>
-        </div>
-    `;
-
-    // 綁定按鈕事件
-    const moveUp = formItem.querySelector('.move-up');
-    const moveDown = formItem.querySelector('.move-down');
-    const deleteBtn = formItem.querySelector('.delete');
-
-    moveUp.addEventListener('click', () => moveElement(formItem, 'up'));
-    moveDown.addEventListener('click', () => moveElement(formItem, 'down'));
-    deleteBtn.addEventListener('click', () => formItem.remove());
-
-    // 插入到排序區域
-    sortable.appendChild(formItem);
+function onWidgetTap(event) {
+    const widgetType = event.target.getAttribute('data-type');
+    const newItem = createFormItem(widgetType);
+    
+    formItems.push(newItem);
+    renderFormItems();
 }
 
-// 移動元素上下
-function moveElement(element, direction) {
-    if (direction === 'up') {
-        const prev = element.previousElementSibling;
-        if (prev) sortable.insertBefore(element, prev);
-    } else if (direction === 'down') {
-        const next = element.nextElementSibling;
-        if (next) sortable.insertBefore(next, element);
-    }
-}
-
-// 根據控件類型返回標籤名稱
-function getWidgetLabel(widgetType) {
-    const labels = {
-        'single-line-text': '單行文本',
-        'multi-line-text': '多行文本',
+function createFormItem(type) {
+    const itemMap = {
+        'single-line-text': {
+            label: '单行文本',
+            type: 'text'
+        },
+        'multi-line-text': {
+            label: '多行文本',
+            type: 'textarea'
+        },
+        'number': {
+            label: '数字',
+            type: 'number'
+        },
+        'currency': {
+            label: '金额',
+            type: 'number'
+        },
+        'description': {
+            label: '说明',
+            type: 'text'
+        },
+        'formula': {
+            label: '计算公式',
+            type: 'text'
+        }
     };
-    return labels[widgetType] || '未知控件';
+
+    return {
+        ...itemMap[type],
+        id: Date.now()
+    };
+}
+
+function renderFormItems() {
+    const formPanel = document.getElementById('formPanel');
+    formPanel.innerHTML = formItems.map(item => `
+        <div class="form-item" data-id="${item.id}">
+            <span>${item.label}</span>
+            <span class="form-item-remove" onclick="removeFormItem(${item.id})">🗑️</span>
+        </div>
+    `).join('');
+}
+
+function removeFormItem(id) {
+    formItems = formItems.filter(item => item.id !== id);
+    renderFormItems();
 }
