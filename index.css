@@ -57,10 +57,29 @@ body, html {
 }
 
 .form-panel {
+    position: relative;
     flex-grow: 1;
-    padding: 20px;
+    padding-top: 50px;
+    padding: 15px 5;
     overflow-y: auto;
+
 }
+
+.form-panel::before {
+    content: 'Templeted Preview';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 14px;
+    color: #888;
+}
+
 
 .form-item {
     margin-bottom: 15px;
@@ -70,6 +89,99 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.2s;
+    cursor: grab;
+    position: relative;
+    user-select: none;
+}
+
+.form-item.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+.form-item.drag-over {
+    border: 2px dashed #007bff;
+}
+
+.form-item.placeholder {
+    background-color: #f0f0f0;
+    border: 2px dashed #999;
+    visibility: visible;
+}
+
+/* New drop zone styling */
+.drop-zone {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px; /* Larger drop zone */
+    z-index: 10;
+}
+
+.drop-zone.top {
+    top: 0;
+}
+
+.drop-zone.bottom {
+    bottom: 0;
+}
+
+.drag-space {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: transparent;
+    z-index: 10;
+}
+
+
+.form-item.dragging-active {
+    opacity: 0.7;
+
+}
+
+
+.form-item.dragging-chosen {
+    cursor: move;
+}
+
+.insert-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #007bff;
+    z-index: 10;
+}
+
+.insert-indicator:first-child {
+    top: 0;
+}
+
+.insert-indicator:last-child {
+    bottom: 0;
+}
+
+
+.drag-preview {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.7;
+    transform: rotate(3deg);
+}
+
+.insert-indicator.top {
+    top: -1px;
+}
+
+.insert-indicator.bottom {
+    bottom: -1px;
+}
+
+.insert-indicator.active {
+    display: block;
 }
 
 .form-item-remove {
